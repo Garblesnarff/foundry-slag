@@ -9,5 +9,33 @@
     "devUrl": "http://localhost:5174",
     "frontendDist": "../foundry-slag-frontend/dist"
   },
-  "app": { "windows": [{ "title": "Foundry Slag", "width": 1440, "height": 900 }] }
+  "app": {
+    "windows": [
+      {
+        "title": "Foundry Slag",
+        "width": 1440,
+        "height": 900,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["app", "dmg"],
+    "category": "GraphicsAndDesign",
+    "copyright": "© Hanson Foundry",
+    "shortDescription": "Slag the background. Keep the gold. All on your Mac.",
+    "macOS": {
+      "minimumSystemVersion": "13.0",
+      "entitlements": "entitlements.plist",
+      "files": {
+        "Info.plist": "Info.plist"
+      },
+      "exceptionDomain": "localhost"
+    }
+  }
 }

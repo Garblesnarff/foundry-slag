@@ -2,13 +2,14 @@ import { useEffect, useMemo, useState } from 'react';
 import { API_BASE } from '../../api/client';
 import { getBatch, removeBatch } from '../../api/remove';
 import { useSSE } from '../../hooks/useSSE';
+import type { Job, ProcessedImage } from '../../types';
 import Dropzone from '../slag/Dropzone';
 import BatchGrid from './BatchGrid';
 import BatchProgress from './BatchProgress';
 
 export default function BatchView() {
-  const [job, setJob] = useState<any | null>(null);
-  const [images, setImages] = useState<any[]>([]);
+  const [job, setJob] = useState<Job | null>(null);
+  const [images, setImages] = useState<ProcessedImage[]>([]);
   const sseUrl = useMemo(() => (job ? `${API_BASE}/remove/batch/${job.id}/progress` : null), [job]);
 
   const refresh = async (jobId: string) => {
