@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+foundry-slag-frontend/dist/
+.DS_Store

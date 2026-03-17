@@ -10,6 +10,25 @@ from models import RefinementPayload
 router = APIRouter(tags=["refine"])
 
 
+def serialize_image(row: dict) -> dict:
+    return {
+        "id": row["id"],
+        "job_id": row["job_id"],
+        "status": row["status"],
+        "original_filename": row["original_filename"],
+        "input_width": row.get("input_width"),
+        "input_height": row.get("input_height"),
+        "output_width": row.get("output_width"),
+        "output_height": row.get("output_height"),
+        "output_file_size_bytes": row.get("output_file_size_bytes"),
+        "processing_time_seconds": row.get("processing_time_seconds"),
+        "original_url": f"/api/v1/images/{row['id']}/original",
+        "result_url": f"/api/v1/images/{row['id']}/result",
+        "thumbnail_url": f"/api/v1/images/{row['id']}/thumbnail",
+        "created_at": row["created_at"],
+    }
+
+
 @router.post("/refine/{image_id}")
 async def refine_image(image_id: str, payload: RefinementPayload):
     row = await fetch_one("SELECT * FROM images WHERE id=?", (image_id,))
@@ -26,6 +45,7 @@ async def refine_image(image_id: str, payload: RefinementPayload):
     img = apply_background(img, payload.bg_type, payload.bg_color, payload.bg_image_path)
 
     output_path = Path(source).with_name(f"{image_id}_refined.png")
+    output_path.parent.mkdir(parents=True, exist_ok=True)
     img.save(output_path, "PNG", optimize=True)
     thumb = Path(row["thumbnail_path"]) if row.get("thumbnail_path") else output_path.with_name(f"{image_id}_thumb.png")
     create_thumbnail(str(output_path), str(thumb))
@@ -44,7 +64,8 @@ async def refine_image(image_id: str, payload: RefinementPayload):
             payload.shadow_blur, str(thumb), now_iso(), image_id,
         ),
     )
-    return {"image": await fetch_one("SELECT * FROM images WHERE id=?", (image_id,))}
+    updated = await fetch_one("SELECT * FROM images WHERE id=?", (image_id,))
+    return {"image": serialize_image(updated)}
 
 
 @router.post("/refine/{image_id}/reset")
@@ -63,4 +84,5 @@ async def reset_refinement(image_id: str):
         """,
         (image_id,),
     )
-    return {"image": await fetch_one("SELECT * FROM images WHERE id=?", (image_id,))}
+    updated = await fetch_one("SELECT * FROM images WHERE id=?", (image_id,))
+    return {"image": serialize_image(updated)}

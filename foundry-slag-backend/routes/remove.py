@@ -1,6 +1,5 @@
 import asyncio
 import json
-from pathlib import Path
 import shutil
 import time
 
@@ -10,6 +9,7 @@ from fastapi.responses import StreamingResponse
 from config import (
     DEFAULT_ALPHA_MATTING,
     DEFAULT_MODEL,
+    INPUT_DIR,
     MAX_BATCH_SIZE,
     OUTPUT_DIR,
     SUPPORTED_MODELS,
@@ -33,11 +33,16 @@ def image_payload(row: dict) -> dict:
         "output_height": row.get("output_height"),
         "output_file_size_bytes": row.get("output_file_size_bytes"),
         "processing_time_seconds": row.get("processing_time_seconds"),
-        "original_url": f"/api/v1/images/{row['id']}/original",
         "result_url": f"/api/v1/images/{row['id']}/result",
         "thumbnail_url": f"/api/v1/images/{row['id']}/thumbnail",
-        "created_at": row["created_at"],
     }
+
+
+def image_detail_payload(row: dict) -> dict:
+    data = image_payload(row)
+    data["original_url"] = f"/api/v1/images/{row['id']}/original"
+    data["created_at"] = row["created_at"]
+    return data
 
 
 async def _process_one(request: Request, image_id: str, input_path: str, alpha_matting: bool):
@@ -66,7 +71,12 @@ async def _process_one(request: Request, image_id: str, input_path: str, alpha_m
 
 
 @router.post("/remove")
-async def remove_single(request: Request, file: UploadFile = File(...), model: str = Form(DEFAULT_MODEL), alpha_matting: bool = Form(DEFAULT_ALPHA_MATTING)):
+async def remove_single(
+    request: Request,
+    file: UploadFile = File(...),
+    model: str = Form(DEFAULT_MODEL),
+    alpha_matting: bool = Form(DEFAULT_ALPHA_MATTING),
+):
     if not request.app.state.engine.loaded:
         raise HTTPException(status_code=503, detail={"error": "model_not_loaded", "message": "Model still loading", "details": {}})
     if model not in SUPPORTED_MODELS:
@@ -75,8 +85,7 @@ async def remove_single(request: Request, file: UploadFile = File(...), model: s
         await request.app.state.engine.switch_model(model)
 
     job_id = await create_job("single", model, 1)
-    image_id = None
-    input_path = OUTPUT_DIR.parent / "input" / f"{job_id}_{file.filename}"
+    input_path = INPUT_DIR / f"{job_id}_{file.filename}"
     with input_path.open("wb") as w:
         shutil.copyfileobj(file.file, w)
 
@@ -104,7 +113,7 @@ async def remove_single(request: Request, file: UploadFile = File(...), model: s
         request.app.state.queue_length -= 1
 
     row = await fetch_one("SELECT * FROM images WHERE id=?", (image_id,))
-    return {"image": image_payload(row)}
+    return {"image": image_detail_payload(row)}
 
 
 async def process_batch(request: Request, job_id: str, image_rows: list[dict], alpha_matting: bool):
@@ -113,6 +122,8 @@ async def process_batch(request: Request, job_id: str, image_rows: list[dict], a
     start = time.time()
     completed = 0
     failed = 0
+    request.app.state.queue_length += len(image_rows)
+
     for idx, row in enumerate(image_rows, start=1):
         try:
             await execute("UPDATE images SET status='processing' WHERE id=?", (row["id"],))
@@ -124,20 +135,34 @@ async def process_batch(request: Request, job_id: str, image_rows: list[dict], a
             await execute("UPDATE images SET status='failed', error_message=? WHERE id=?", (str(exc), row["id"]))
             await queue.put(("image_failed", {"image_id": row["id"], "index": idx, "total": len(image_rows), "error": str(exc)}))
         await execute("UPDATE jobs SET completed_images=?, failed_images=? WHERE id=?", (completed, failed, job_id))
+
     total_time = time.time() - start
     status = "completed" if failed == 0 else "failed"
     await execute("UPDATE jobs SET status=?, processing_time_seconds=?, completed_at=? WHERE id=?", (status, total_time, now_iso(), job_id))
     await queue.put(("batch_complete", {"job_id": job_id, "completed": completed, "failed": failed, "total_time": total_time}))
+    request.app.state.queue_length -= len(image_rows)
 
 
 @router.post("/remove/batch", status_code=202)
-async def remove_batch(request: Request, files: list[UploadFile] = File(...), model: str = Form(DEFAULT_MODEL), alpha_matting: bool = Form(DEFAULT_ALPHA_MATTING)):
+async def remove_batch(
+    request: Request,
+    files: list[UploadFile] = File(...),
+    model: str = Form(DEFAULT_MODEL),
+    alpha_matting: bool = Form(DEFAULT_ALPHA_MATTING),
+):
+    if not request.app.state.engine.loaded:
+        raise HTTPException(status_code=503, detail={"error": "model_not_loaded", "message": "Model still loading", "details": {}})
+    if model not in SUPPORTED_MODELS:
+        raise HTTPException(status_code=400, detail={"error": "invalid_setting", "message": "Unsupported model", "details": {"model": model}})
+    if model != request.app.state.engine.model_name:
+        await request.app.state.engine.switch_model(model)
     if len(files) > MAX_BATCH_SIZE:
         raise HTTPException(status_code=400, detail={"error": "batch_too_large", "message": "Batch exceeds max size", "details": {"max": MAX_BATCH_SIZE}})
+
     job_id = await create_job("batch", model, len(files))
     image_rows = []
     for f in files:
-        input_path = OUTPUT_DIR.parent / "input" / f"{job_id}_{f.filename}"
+        input_path = INPUT_DIR / f"{job_id}_{f.filename}"
         with input_path.open("wb") as w:
             shutil.copyfileobj(f.file, w)
         val = validate_image(str(input_path))

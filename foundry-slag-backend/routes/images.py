@@ -13,7 +13,7 @@ def get_image_or_404(row):
 
 @router.get("/images/{image_id}/original")
 async def get_original(image_id: str):
-    row = await fetch_one("SELECT input_path, input_format FROM images WHERE id=?", (image_id,))
+    row = await fetch_one("SELECT input_path FROM images WHERE id=?", (image_id,))
     get_image_or_404(row)
     return FileResponse(row["input_path"])
 
@@ -22,6 +22,8 @@ async def get_original(image_id: str):
 async def get_result(image_id: str):
     row = await fetch_one("SELECT output_path FROM images WHERE id=?", (image_id,))
     get_image_or_404(row)
+    if not row.get("output_path"):
+        raise HTTPException(404, detail={"error": "image_not_found", "message": "Result image not available", "details": {}})
     return FileResponse(row["output_path"], headers={"Accept-Ranges": "bytes"})
 
 
@@ -29,6 +31,8 @@ async def get_result(image_id: str):
 async def get_thumbnail(image_id: str):
     row = await fetch_one("SELECT thumbnail_path FROM images WHERE id=?", (image_id,))
     get_image_or_404(row)
+    if not row.get("thumbnail_path"):
+        raise HTTPException(404, detail={"error": "image_not_found", "message": "Thumbnail not available", "details": {}})
     return FileResponse(row["thumbnail_path"])
 
 
