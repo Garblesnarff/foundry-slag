@@ -1,0 +1,2 @@
+import ForgeButton from '../shared/ForgeButton';
+export default function ExportBar({ format, setFormat, onExport }: { format: string; setFormat: (s: string)=>void; onExport: ()=>void }) { return <div className="card flex gap-2"><select value={format} onChange={(e)=>setFormat(e.target.value)}><option>png</option><option>webp</option><option>jpg</option></select><ForgeButton onClick={onExport}>EXPORT ↓</ForgeButton></div>; }

@@ -1,0 +1,1 @@
+export default function BatchItem({ item }: { item: any }) { return <div className="card"><img src={`http://localhost:3458${item.thumbnail_url}`} className="w-full h-28 object-cover rounded" /><div className="text-xs mt-2">{item.original_filename} · {item.status}</div></div>; }

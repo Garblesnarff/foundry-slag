@@ -1,0 +1,1 @@
+export default function EmberParticles() { return <div className="pointer-events-none absolute inset-0 overflow-hidden">{Array.from({length:12}).map((_,i)=><span key={i} style={{left:`${i*9}%`,animationDelay:`${i*0.2}s`}} className="absolute bottom-0 h-2 w-2 rounded-full bg-amber-400 opacity-60" />)}</div>; }

@@ -1,0 +1,1 @@
+export default function HistoryGrid({ items }: { items: any[] }) { return <div className="grid grid-cols-5 gap-3">{items.map(i=><div key={i.id} className="card"><img src={`http://localhost:3458${i.thumbnail_url||''}`} className="h-24 w-full object-cover rounded" /><div className="text-xs mt-2">{i.original_filename}</div></div>)}</div>; }

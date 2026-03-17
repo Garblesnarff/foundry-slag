@@ -1,0 +1,1 @@
+export default function CompareSlider() { return <div className="absolute top-0 bottom-0 left-1/2 w-0.5 bg-amber-400"><div className="absolute top-1/2 -left-3 -translate-y-1/2 w-6 h-6 rounded-full bg-amber-400 text-black text-xs grid place-items-center">◀▶</div></div>; }
