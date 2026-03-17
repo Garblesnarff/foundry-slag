@@ -1,0 +1,1 @@
+export default function HistoryFilters({ search, setSearch }: { search: string; setSearch:(s:string)=>void }) { return <div className="card flex gap-2"><input placeholder="Search filename" value={search} onChange={e=>setSearch(e.target.value)} /><select><option>newest</option><option>oldest</option><option>largest</option><option>smallest</option></select></div>; }

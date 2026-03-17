@@ -1,0 +1,1 @@
+export default function StatusBar({ status }: { status: string }) { return <footer className="h-8 px-4 border-t flex items-center text-xs mono" style={{borderColor:'var(--border)'}}>Status: {status}</footer>; }

@@ -1,0 +1,1 @@
+export default function BatchProgress({ completed, total }: { completed: number; total: number }) { const p = total ? (completed/total)*100 : 0; return <div className="card"><div className="mono">Slagging {completed} of {total}...</div><div className="w-full h-2 bg-[var(--border)] rounded"><div className="h-2 bg-amber-500 rounded" style={{width:`${p}%`}} /></div></div>; }
