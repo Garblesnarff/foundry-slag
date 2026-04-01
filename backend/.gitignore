@@ -1,0 +1,50 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# C extensions
+*.o
+*.a
+*.so.*
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Models
+models/
+*.onnx
+*.pb
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+
+# macOS
+.DS_Store
+
+# Temp files
+*.tmp
+.pytest_cache/
+.coverage
+htmlcov/

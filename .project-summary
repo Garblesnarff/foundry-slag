@@ -1,0 +1,161 @@
+# Foundry Slag — Project Scaffold Complete
+
+## Files Created
+
+### Root Documentation (5 files)
+- CLAUDE.md — Technical overview & implementation notes
+- AGENTS.md — Coordination rules for multi-agent development
+- README.md — Project overview for humans
+- PRD.md — Complete product specification
+- TODO.md — Prioritized task list
+
+### Backend (5 files)
+- backend/README.md — Backend setup & API reference
+- backend/main.py — FastAPI app stub with structure
+- backend/requirements.txt — Python dependencies (FastAPI, rembg, etc.)
+- backend/.env.example — Environment variables template
+- backend/.gitignore — Python-specific ignore rules
+
+### Frontend (12 files)
+- frontend/README.md — Frontend setup instructions
+- frontend/package.json — React 19, TypeScript, Vite, Tailwind
+- frontend/vite.config.ts — Vite configuration
+- frontend/tsconfig.json — TypeScript strict mode
+- frontend/tsconfig.node.json — Node dependencies config
+- frontend/tailwind.config.ts — Tailwind theme (forge colors)
+- frontend/postcss.config.js — PostCSS for Tailwind
+- frontend/index.html — HTML entry point
+- frontend/.env.example — VITE_API_URL config
+- frontend/.gitignore — Node-specific ignore rules
+- frontend/src/main.tsx — React entry point
+- frontend/src/App.tsx — Root component with forge theme
+
+### Frontend Subdirectories & Files (8 files)
+- frontend/src/api/client.ts — API wrapper with all endpoints
+- frontend/src/context/AppContext.tsx — Global state management
+- frontend/src/hooks/useSSE.ts — Server-sent events hook
+- frontend/src/hooks/useHistory.ts — History management hook
+- frontend/src/styles/foundry.css — Custom forge theme utilities
+
+### Documentation (3 files)
+- docs/DESIGN_SYSTEM.md — Foundry design system reference
+- docs/API_SPEC.md — Complete REST API specification
+- docs/ARCHITECTURE.md — System architecture & data flow
+
+## Project Statistics
+
+- **Total Files**: 30
+- **Total Lines of Code/Docs**: ~3,000+
+- **Backend Lines**: ~50 (stub)
+- **Frontend Lines**: ~400 (stubs + hooks)
+- **Documentation Lines**: ~2,500+
+
+## Next Steps
+
+### For Backend Agent
+1. Read CLAUDE.md and PRD.md
+2. Implement main.py endpoints per API_SPEC.md
+3. Create engine.py (rembg wrapper)
+4. Create database.py (SQLite schema)
+5. Create utils.py (image processing)
+6. Test endpoints with curl or Postman
+
+### For Frontend Agent
+1. Read CLAUDE.md and PRD.md
+2. Implement components in src/components/
+3. Wire up API client to useApp() context
+4. Build UI for each feature (single, batch, history, settings)
+5. Test with npm run dev
+
+### For Full-Stack Agent
+1. Review both backend and frontend stubs
+2. Ensure API contract matches API_SPEC.md exactly
+3. Test end-to-end flow: upload → process → export
+4. Profile performance on macOS M1
+5. Document any deviations from spec
+
+## Key Design Decisions
+
+1. **100% Offline** — No cloud, no telemetry, no subscriptions
+2. **Local SQLite** — History and settings stay local
+3. **rembg + ONNX Runtime** — Auto-download models, CPU float32 only
+4. **Forge Language** — Slag-specific terminology throughout
+5. **Dark Aesthetic** — Charcoal (#141210) + Amber (#E8A849)
+6. **React Context** — No Redux for MVP simplicity
+7. **Server-Sent Events** — SSE for batch progress streaming
+8. **API-First Design** — Frontend decoupled from backend via REST
+
+## Port Configuration
+
+- Backend: localhost:3458
+- Frontend: localhost:5175
+- These are coordinated across all Foundry apps
+
+## File Organization
+
+```
+foundry-slag/
+├── CLAUDE.md                 # Start here
+├── AGENTS.md
+├── README.md
+├── PRD.md
+├── TODO.md
+├── backend/
+│   ├── main.py             # FastAPI routes
+│   ├── engine.py            # TODO: rembg wrapper
+│   ├── database.py          # TODO: SQLite schema
+│   ├── models.py            # TODO: Pydantic models
+│   ├── utils.py             # TODO: Image processing
+│   ├── requirements.txt
+│   ├── .env.example
+│   ├── .gitignore
+│   └── README.md
+├── frontend/
+│   ├── src/
+│   │   ├── main.tsx
+│   │   ├── App.tsx
+│   │   ├── api/client.ts
+│   │   ├── components/      # TODO: TitleBar, Dropzone, etc.
+│   │   ├── hooks/           # useSSE, useHistory
+│   │   ├── context/         # AppContext
+│   │   └── styles/foundry.css
+│   ├── index.html
+│   ├── package.json
+│   ├── vite.config.ts
+│   ├── tsconfig.json
+│   ├── tailwind.config.ts
+│   ├── postcss.config.js
+│   ├── .env.example
+│   ├── .gitignore
+│   └── README.md
+└── docs/
+    ├── DESIGN_SYSTEM.md
+    ├── API_SPEC.md
+    └── ARCHITECTURE.md
+```
+
+## What's Ready to Code
+
+✓ Project structure
+✓ Configuration files
+✓ API specification
+✓ Database schema design
+✓ Component stubs and hooks
+✓ Styling framework (Tailwind + forge theme)
+✓ Documentation and guides
+
+## What Needs Implementation
+
+- Backend routes and handlers
+- rembg integration (model management, inference)
+- SQLite database operations
+- Image processing (feather, shift, shadow, etc.)
+- Frontend components (9 main components)
+- API client integration
+- Error handling and validation
+- Testing
+
+---
+
+Scaffold timestamp: 2026-03-14
+Foundry Slag v0.1.0 - The slag burns away, the gold remains.

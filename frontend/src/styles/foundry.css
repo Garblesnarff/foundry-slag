@@ -1,0 +1,92 @@
+/**
+ * Foundry Slag Styles
+ * 
+ * Custom styles for dark forge aesthetic.
+ * Color scheme: charcoal blacks (#141210), amber accents (#E8A849)
+ * Typography: DM Sans (body), JetBrains Mono (code), Playfair Display (titles)
+ */
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+  :root {
+    --color-forge-black: #141210;
+    --color-forge-gray: #3A3935;
+    --color-forge-light: #F5F5F5;
+    --color-slag-amber: #E8A849;
+  }
+
+  body {
+    @apply bg-forge-black text-forge-light;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-slag-amber text-forge-black px-4 py-2 rounded font-semibold hover:opacity-90 transition-opacity;
+  }
+
+  .btn-secondary {
+    @apply bg-forge-gray text-forge-light px-4 py-2 rounded font-semibold hover:bg-opacity-90 transition-colors;
+  }
+
+  .input-primary {
+    @apply bg-forge-gray text-forge-light px-3 py-2 rounded border border-forge-gray focus:border-slag-amber focus:outline-none transition-colors;
+  }
+
+  .dropzone {
+    @apply border-2 border-dashed border-forge-gray rounded-lg p-8 text-center hover:border-slag-amber transition-colors cursor-pointer;
+  }
+
+  .card {
+    @apply bg-forge-gray rounded-lg p-6 border border-forge-gray;
+  }
+
+  .slider {
+    @apply w-full h-2 bg-forge-gray rounded-lg appearance-none cursor-pointer;
+  }
+
+  .slider::-webkit-slider-thumb {
+    @apply appearance-none w-5 h-5 rounded-full bg-slag-amber cursor-pointer;
+  }
+
+  .slider::-moz-range-thumb {
+    @apply w-5 h-5 rounded-full bg-slag-amber cursor-pointer border-0;
+  }
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+/* Forge-specific utility classes */
+.slag-text {
+  @apply font-title text-slag-amber;
+}
+
+.forge-border {
+  @apply border-forge-gray;
+}
+
+.forge-bg {
+  @apply bg-forge-black;
+}
+
+/* Responsive utilities */
+@media (max-width: 640px) {
+  .dropzone {
+    @apply p-4;
+  }
+}
