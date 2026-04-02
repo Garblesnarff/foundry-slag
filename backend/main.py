@@ -21,7 +21,8 @@ import hashlib
 from pathlib import Path
 
 from fastapi import FastAPI, UploadFile, File, Form, Query, Path as PathParam
-from fastapi.responses import Response, StreamingResponse
+from fastapi.responses import HTMLResponse, Response, StreamingResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 
@@ -511,8 +512,19 @@ async def export_batch(request: ExportBatchRequest):
     )
 
 
+# Serve frontend
+_frontend_dist = Path(__file__).resolve().parent.parent / "frontend" / "dist"
+if _frontend_dist.is_dir():
+    app.mount("/assets", StaticFiles(directory=str(_frontend_dist / "assets")), name="frontend-assets")
+
+    @app.get("/{path:path}")
+    async def _spa_fallback(path: str):
+        index = _frontend_dist / "index.html"
+        return HTMLResponse(index.read_text())
+
+
 if __name__ == "__main__":
     import uvicorn
-    
+
     port = int(os.getenv("SLAG_PORT", "3458"))
     uvicorn.run(app, host="0.0.0.0", port=port)
