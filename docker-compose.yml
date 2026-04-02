@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  foundry-slag:
+    build: .
+    container_name: foundry-slag
+    ports:
+      - "3458:3458"
+    environment:
+      - ENVIRONMENT=production
+      - SLAG_PORT=3458
+    volumes:
+      - foundry-slag-data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:3458/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+volumes:
+  foundry-slag-data:
