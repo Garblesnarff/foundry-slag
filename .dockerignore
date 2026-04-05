@@ -20,3 +20,4 @@ docs/
 !README.md
 frontend/node_modules
 backend/__pycache__
+**/._*

@@ -98,7 +98,7 @@ app.add_middleware(
 # ==================== Health ====================
 
 
-@app.get("/health", response_model=HealthResponse)
+@app.get("/api/health", response_model=HealthResponse)
 async def health_check():
     """Check API availability."""
     return HealthResponse(status="ok", version=API_VERSION)
