@@ -29,6 +29,11 @@ function AppContent() {
   } | null>(null)
   const [showSettings, setShowSettings] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [batchProgress, setBatchProgress] = useState<{
+    completed: number
+    total: number
+    status: string
+  } | null>(null)
 
   const handleFilesSelected = useCallback(async (files: File[]) => {
     if (isProcessing || files.length === 0) return
@@ -48,8 +53,16 @@ function AppContent() {
           processingTimeMs: response.processingTimeMs,
         })
       } else {
-        // TODO: Handle batch processing with SSE
-        setError('Batch processing coming soon!')
+        setBatchProgress({ completed: 0, total: files.length, status: 'processing' })
+        await api.batchRemoveBackground(files, { model: currentModel }, (progress) => {
+          setBatchProgress({
+            completed: progress.completed,
+            total: progress.total,
+            status: progress.status,
+          })
+        })
+        setBatchProgress(null)
+        setView('history')
       }
     } catch (err) {
       console.error('Processing failed:', err)
@@ -61,14 +74,19 @@ function AppContent() {
 
   const handleReProcess = useCallback(async (settings: { feather: number; shift: number }) => {
     if (!result) return
-    
+
     setIsProcessing(true)
     try {
-      // Re-process with new settings - using current result as base
-      // In a real implementation, we'd call the API with feather/shift params
-      console.log('Re-processing with settings:', settings)
+      const blob = await api.exportResult(result.id, 'png', settings.feather, settings.shift)
+      const base64 = await new Promise<string>((resolve) => {
+        const reader = new FileReader()
+        reader.onload = () => resolve(reader.result as string)
+        reader.readAsDataURL(blob)
+      })
+      setResult(prev => prev ? { ...prev, result: base64 } : null)
     } catch (err) {
       console.error('Re-processing failed:', err)
+      setError(err instanceof Error ? err.message : 'Re-processing failed')
     } finally {
       setIsProcessing(false)
     }
@@ -96,9 +114,25 @@ function AppContent() {
     setError(null)
   }, [])
 
-  const handleHistorySelect = useCallback((entry: any) => {
-    // Load history entry - would need to fetch the full result
-    console.log('Selected history entry:', entry)
+  const handleHistorySelect = useCallback(async (entry: any) => {
+    try {
+      const blob = await api.exportResult(entry.id, 'png')
+      const base64 = await new Promise<string>((resolve) => {
+        const reader = new FileReader()
+        reader.onload = () => resolve(reader.result as string)
+        reader.readAsDataURL(blob)
+      })
+      setResult({
+        id: entry.id,
+        original: '',
+        result: base64,
+        model: entry.modelName || 'u2net',
+        processingTimeMs: entry.processingTimeMs || 0,
+      })
+      setView('main')
+    } catch (err) {
+      setError('Failed to load history entry')
+    }
   }, [])
 
   return (
@@ -137,11 +171,25 @@ function AppContent() {
               </div>
             )}
 
+            {batchProgress && (
+              <div className="mb-6 p-4 bg-slag-amber/10 border border-slag-amber/30 rounded-lg">
+                <p className="text-sm text-forge-light mb-2">
+                  Processing batch: {batchProgress.completed}/{batchProgress.total}
+                </p>
+                <div className="w-full bg-forge-gray rounded-full h-2">
+                  <div
+                    className="bg-slag-amber h-2 rounded-full transition-all"
+                    style={{ width: `${(batchProgress.completed / batchProgress.total) * 100}%` }}
+                  />
+                </div>
+              </div>
+            )}
+
             {!result ? (
-              <Dropzone 
+              <Dropzone
                 onFilesSelected={handleFilesSelected}
                 isProcessing={isProcessing}
-                multiple={false}
+                multiple={true}
               />
             ) : (
               <ResultPreview

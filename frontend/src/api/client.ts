@@ -237,8 +237,13 @@ export const api = {
   async exportResult(
     id: string,
     format: 'png' | 'webp' | 'jpg',
+    feather?: number,
+    shift?: number,
   ): Promise<Blob> {
-    const res = await fetch(`${API_URL}/export/${id}?format=${format}`)
+    const params = new URLSearchParams({ format })
+    if (feather !== undefined) params.set('feather', feather.toString())
+    if (shift !== undefined) params.set('shift', shift.toString())
+    const res = await fetch(`${API_URL}/export/${id}?${params}`)
     if (!res.ok) throw new Error(`Failed to export result: ${res.statusText}`)
     return res.blob()
   },
