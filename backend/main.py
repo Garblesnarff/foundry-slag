@@ -20,7 +20,7 @@ import zipfile
 import hashlib
 from pathlib import Path
 
-from fastapi import FastAPI, UploadFile, File, Form, Query, Path as PathParam
+from fastapi import FastAPI, UploadFile, File, Form, Query, Path as PathParam, HTTPException
 from fastapi.responses import HTMLResponse, Response, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
@@ -42,7 +42,6 @@ from models import (
     ModelDownloadResponse,
     HistoryListResponse,
     SettingsResponse,
-    ErrorResponse,
     ExportBatchRequest,
 )
 
@@ -99,6 +98,7 @@ app.add_middleware(
 
 
 @app.get("/api/health", response_model=HealthResponse)
+@app.get("/health", response_model=HealthResponse)
 async def health_check():
     """Check API availability."""
     return HealthResponse(status="ok", version=API_VERSION)
@@ -119,7 +119,7 @@ async def remove_background(
     """
     # Validate model
     if model not in AVAILABLE_MODELS:
-        raise ErrorResponse(error="invalid-model", message=f"Unknown model: {model}")
+        raise HTTPException(status_code=400, detail=f"Unknown model: {model}")
     
     # Read file
     image_data = await file.read()
@@ -127,7 +127,7 @@ async def remove_background(
     # Validate image
     is_valid, error = validate_image(image_data)
     if not is_valid:
-        raise ErrorResponse(error="invalid-image", message=error)
+        raise HTTPException(status_code=400, detail=error)
     
     # Compute hash for dedup
     original_hash = hashlib.sha256(image_data).hexdigest()
@@ -182,7 +182,7 @@ async def remove_background_batch(
     """
     # Validate model
     if model not in AVAILABLE_MODELS:
-        raise ErrorResponse(error="invalid-model", message=f"Unknown model: {model}")
+        raise HTTPException(status_code=400, detail=f"Unknown model: {model}")
     
     # Get engine and database
     engine = get_engine()
@@ -283,7 +283,7 @@ async def list_models():
 async def download_model(name: str = PathParam(...)):
     """Download and cache a model."""
     if name not in AVAILABLE_MODELS:
-        raise ErrorResponse(error="not-found", message=f"Model not found: {name}")
+        raise HTTPException(status_code=404, detail=f"Model not found: {name}")
     
     engine = get_engine()
     result = await engine.download_model(name)
@@ -340,7 +340,7 @@ async def get_history_entry(id: str = PathParam(...)):
     entry = await db.get_history_entry(id)
     
     if not entry:
-        raise ErrorResponse(error="not-found", message="History entry not found")
+        raise HTTPException(status_code=404, detail="History entry not found")
     
     settings = json.loads(entry.get("settings", "{}"))
     
@@ -364,7 +364,7 @@ async def delete_history_entry(id: str = PathParam(...)):
     success = await db.delete_history_entry(id)
     
     if not success:
-        raise ErrorResponse(error="not-found", message="History entry not found")
+        raise HTTPException(status_code=404, detail="History entry not found")
     
     return Response(status_code=204)
 
@@ -416,19 +416,19 @@ async def export_result(
     """Export processed image."""
     # Validate format
     if format not in ("png", "webp", "jpg"):
-        raise ErrorResponse(error="invalid-format", message=f"Unsupported format: {format}")
+        raise HTTPException(status_code=400, detail=f"Unsupported format: {format}")
     
     # Get history entry
     db = await get_database()
     entry = await db.get_history_entry(id)
     
     if not entry:
-        raise ErrorResponse(error="not-found", message="History entry not found")
+        raise HTTPException(status_code=404, detail="History entry not found")
     
     # Get PNG data
     result_png = await db.get_result_png(id)
     if not result_png:
-        raise ErrorResponse(error="not-found", message="Result image not found")
+        raise HTTPException(status_code=404, detail="Result image not found")
     
     # Apply custom settings if provided
     if feather is not None or shift is not None:
