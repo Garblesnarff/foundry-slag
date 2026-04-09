@@ -1,0 +1,43 @@
+name: FoundrySlag
+options:
+  bundleIdPrefix: com.foundry
+  deploymentTarget:
+    macOS: "13.0"
+  xcodeVersion: "15.0"
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MACOSX_DEPLOYMENT_TARGET: "13.0"
+    ENABLE_HARDENED_RUNTIME: YES
+    CODE_SIGN_STYLE: Automatic
+    PRODUCT_NAME: "Foundry Slag"
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    ENABLE_PREVIEWS: YES
+    SWIFT_STRICT_CONCURRENCY: complete
+
+targets:
+  FoundrySlag:
+    type: application
+    platform: macOS
+    sources:
+      - Sources
+      - path: Resources/Info.plist
+        buildPhase: none
+      - path: Resources/FoundrySlag.entitlements
+        buildPhase: none
+      - path: Resources/Assets.xcassets
+        buildPhase: resources
+      - path: Resources/PrivacyInfo.xcprivacy
+        buildPhase: resources
+    settings:
+      base:
+        INFOPLIST_FILE: Resources/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        CODE_SIGN_ENTITLEMENTS: Resources/FoundrySlag.entitlements
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../Frameworks"
+        COMBINE_HIDPI_IMAGES: YES
+    entitlements:
+      path: Resources/FoundrySlag.entitlements

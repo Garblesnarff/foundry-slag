@@ -1,0 +1,396 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		19CBCE8E9F618235BEF53E2B /* SlagEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A627076533F9E881E5FBADC /* SlagEngine.swift */; };
+		1F3DD59892E7BD73BD576910 /* DropZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674588F1CB45A05DD83BCAE1 /* DropZoneView.swift */; };
+		2E34F8B09A04DCA4D2B5B4A4 /* CompareSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE34AC4ABCE754295E418DF0 /* CompareSliderView.swift */; };
+		3EE597DEF13EE211DEC19E60 /* HistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158E7CA36CEC80A84F9E3ED7 /* HistoryStore.swift */; };
+		4F50B70F41CEC7307EB74C2C /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730652E84CFDE225132A392B /* ImageStore.swift */; };
+		54C2AE0F7508F1CF225ADC4B /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB52F02606695553649FBF2 /* HistoryView.swift */; };
+		5FEC25577CB734D6382C7E71 /* FoundrySlagApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080214E079E03453C2860F68 /* FoundrySlagApp.swift */; };
+		65D6F952D1B47E373B09E1CB /* SegmentationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF06DE5E731EDD07802AF4A8 /* SegmentationEngine.swift */; };
+		7D4475E9AB25ABBE604EA1B1 /* BackgroundPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EC0DED5B657105EDF14280 /* BackgroundPicker.swift */; };
+		8920640F08AA4866600C792F /* SlagImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58372CDB372770D5F7100558 /* SlagImage.swift */; };
+		8A08B67AA32CCBC6D4F81E33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C93151E3BC0B16D46C2D7A10 /* Assets.xcassets */; };
+		8A8335EC25C35C583890FF0E /* BatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF024AE5DB9B4F0E8533663 /* BatchView.swift */; };
+		BB56ECE090941E3712307BF3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A40AED25CEA93A3798D5C5 /* SettingsView.swift */; };
+		BF3DE91D4F3EEFFC05CA3C85 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 1792577F24FAD493F02DA121 /* PrivacyInfo.xcprivacy */; };
+		EC97C63F43DCF703957DD423 /* EdgeControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35F362462077007F5515A22 /* EdgeControlsView.swift */; };
+		EE5BBCBD36ABD53397C1935A /* ResultPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE615FD8C87BCF0046B4BB57 /* ResultPreviewView.swift */; };
+		F6955B7A15527F9DFF33ADC3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF9F99EACE0728E1B072F5B /* ContentView.swift */; };
+		FC3F7DCE89A01C2A95053132 /* ImageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBF7BD6B111E3196D423748 /* ImageDocument.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		080214E079E03453C2860F68 /* FoundrySlagApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundrySlagApp.swift; sourceTree = "<group>"; };
+		0DBF7BD6B111E3196D423748 /* ImageDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDocument.swift; sourceTree = "<group>"; };
+		11E60929B8B4DAFF1C0CB778 /* FoundrySlag.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FoundrySlag.entitlements; sourceTree = "<group>"; };
+		158E7CA36CEC80A84F9E3ED7 /* HistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryStore.swift; sourceTree = "<group>"; };
+		1792577F24FAD493F02DA121 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		4D8CCBD33536C55F25A87603 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		58372CDB372770D5F7100558 /* SlagImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlagImage.swift; sourceTree = "<group>"; };
+		674588F1CB45A05DD83BCAE1 /* DropZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropZoneView.swift; sourceTree = "<group>"; };
+		730652E84CFDE225132A392B /* ImageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
+		79EC0DED5B657105EDF14280 /* BackgroundPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundPicker.swift; sourceTree = "<group>"; };
+		8AF024AE5DB9B4F0E8533663 /* BatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchView.swift; sourceTree = "<group>"; };
+		9A627076533F9E881E5FBADC /* SlagEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlagEngine.swift; sourceTree = "<group>"; };
+		B8A40AED25CEA93A3798D5C5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BAB52F02606695553649FBF2 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		BAF9F99EACE0728E1B072F5B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C93151E3BC0B16D46C2D7A10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CE615FD8C87BCF0046B4BB57 /* ResultPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultPreviewView.swift; sourceTree = "<group>"; };
+		DF06DE5E731EDD07802AF4A8 /* SegmentationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentationEngine.swift; sourceTree = "<group>"; };
+		EE34AC4ABCE754295E418DF0 /* CompareSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareSliderView.swift; sourceTree = "<group>"; };
+		EFB13AF00AFC62A82AFE9B5A /* FoundrySlag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoundrySlag.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F35F362462077007F5515A22 /* EdgeControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeControlsView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		19AEEC2D1D67B461058E10F7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C93151E3BC0B16D46C2D7A10 /* Assets.xcassets */,
+				11E60929B8B4DAFF1C0CB778 /* FoundrySlag.entitlements */,
+				4D8CCBD33536C55F25A87603 /* Info.plist */,
+				1792577F24FAD493F02DA121 /* PrivacyInfo.xcprivacy */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		57868EED8A976EA40F4E9946 = {
+			isa = PBXGroup;
+			children = (
+				19AEEC2D1D67B461058E10F7 /* Resources */,
+				96BC0D8D6928AEDCDE4F99FB /* Sources */,
+				CEADE15BAF406D1EA88281F3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		96BC0D8D6928AEDCDE4F99FB /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				080214E079E03453C2860F68 /* FoundrySlagApp.swift */,
+				EDC075DF915F38A6B554ECD1 /* Models */,
+				B8607E9BF245B49D2B809C91 /* Views */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		B8607E9BF245B49D2B809C91 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				79EC0DED5B657105EDF14280 /* BackgroundPicker.swift */,
+				8AF024AE5DB9B4F0E8533663 /* BatchView.swift */,
+				EE34AC4ABCE754295E418DF0 /* CompareSliderView.swift */,
+				BAF9F99EACE0728E1B072F5B /* ContentView.swift */,
+				674588F1CB45A05DD83BCAE1 /* DropZoneView.swift */,
+				F35F362462077007F5515A22 /* EdgeControlsView.swift */,
+				BAB52F02606695553649FBF2 /* HistoryView.swift */,
+				CE615FD8C87BCF0046B4BB57 /* ResultPreviewView.swift */,
+				B8A40AED25CEA93A3798D5C5 /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CEADE15BAF406D1EA88281F3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EFB13AF00AFC62A82AFE9B5A /* FoundrySlag.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EDC075DF915F38A6B554ECD1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				158E7CA36CEC80A84F9E3ED7 /* HistoryStore.swift */,
+				0DBF7BD6B111E3196D423748 /* ImageDocument.swift */,
+				730652E84CFDE225132A392B /* ImageStore.swift */,
+				DF06DE5E731EDD07802AF4A8 /* SegmentationEngine.swift */,
+				9A627076533F9E881E5FBADC /* SlagEngine.swift */,
+				58372CDB372770D5F7100558 /* SlagImage.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AE09467E8849FEC7B1683E2C /* FoundrySlag */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8946696EEB12CA14DBF1A89D /* Build configuration list for PBXNativeTarget "FoundrySlag" */;
+			buildPhases = (
+				D8B1D969AC9152DB84D44C7A /* Sources */,
+				E959AE22B741452B2ADB1FEA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FoundrySlag;
+			packageProductDependencies = (
+			);
+			productName = FoundrySlag;
+			productReference = EFB13AF00AFC62A82AFE9B5A /* FoundrySlag.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		581F8FDD446C5A6BB150347E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					AE09467E8849FEC7B1683E2C = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 2B92E64E118FE2AE933D23A4 /* Build configuration list for PBXProject "FoundrySlag" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 57868EED8A976EA40F4E9946;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = CEADE15BAF406D1EA88281F3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AE09467E8849FEC7B1683E2C /* FoundrySlag */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E959AE22B741452B2ADB1FEA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A08B67AA32CCBC6D4F81E33 /* Assets.xcassets in Resources */,
+				BF3DE91D4F3EEFFC05CA3C85 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D8B1D969AC9152DB84D44C7A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D4475E9AB25ABBE604EA1B1 /* BackgroundPicker.swift in Sources */,
+				8A8335EC25C35C583890FF0E /* BatchView.swift in Sources */,
+				2E34F8B09A04DCA4D2B5B4A4 /* CompareSliderView.swift in Sources */,
+				F6955B7A15527F9DFF33ADC3 /* ContentView.swift in Sources */,
+				1F3DD59892E7BD73BD576910 /* DropZoneView.swift in Sources */,
+				EC97C63F43DCF703957DD423 /* EdgeControlsView.swift in Sources */,
+				5FEC25577CB734D6382C7E71 /* FoundrySlagApp.swift in Sources */,
+				3EE597DEF13EE211DEC19E60 /* HistoryStore.swift in Sources */,
+				54C2AE0F7508F1CF225ADC4B /* HistoryView.swift in Sources */,
+				FC3F7DCE89A01C2A95053132 /* ImageDocument.swift in Sources */,
+				4F50B70F41CEC7307EB74C2C /* ImageStore.swift in Sources */,
+				EE5BBCBD36ABD53397C1935A /* ResultPreviewView.swift in Sources */,
+				65D6F952D1B47E373B09E1CB /* SegmentationEngine.swift in Sources */,
+				BB56ECE090941E3712307BF3 /* SettingsView.swift in Sources */,
+				19CBCE8E9F618235BEF53E2B /* SlagEngine.swift in Sources */,
+				8920640F08AA4866600C792F /* SlagImage.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3C0E7F6E805E00921E85538A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "Foundry Slag";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		47A11AA007AC43EEA036060E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Resources/FoundrySlag.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.foundry.FoundrySlag;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		6DFACC685079A219BE901871 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Resources/FoundrySlag.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.foundry.FoundrySlag;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D60C263967CD83653137FF3A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "Foundry Slag";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2B92E64E118FE2AE933D23A4 /* Build configuration list for PBXProject "FoundrySlag" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D60C263967CD83653137FF3A /* Debug */,
+				3C0E7F6E805E00921E85538A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8946696EEB12CA14DBF1A89D /* Build configuration list for PBXNativeTarget "FoundrySlag" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47A11AA007AC43EEA036060E /* Debug */,
+				6DFACC685079A219BE901871 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 581F8FDD446C5A6BB150347E /* Project object */;
+}
