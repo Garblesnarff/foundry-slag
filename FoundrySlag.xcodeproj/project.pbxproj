@@ -282,7 +282,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.foundry.FoundrySlag;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hanson-foundry.slag;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -295,7 +295,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.foundry.FoundrySlag;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hanson-foundry.slag;
 				SDKROOT = macosx;
 			};
 			name = Release;
